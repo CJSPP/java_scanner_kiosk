@@ -10,10 +10,10 @@ public class Order {
     int count = 1;
 
     // 장바구니에 담기는 상품목록
-    List<Product> productList = new ArrayList<>();
+    private List<Product> productList = new ArrayList<>();
 
     //장바구니에 담겨있는 상품을 가져오기 위한 주문목록(주문취소 & 총 판매금액 & 총 판매상품)
-    List<Product> orderList = new ArrayList<>();
+    private List<Product> orderList = new ArrayList<>();
 
     Scanner sc = new Scanner(System.in);
     String[] burger_name = {"ShackBurger", "SmokeShack", "Shroom Burger", "Cheeseburger", "Hamburger"};
