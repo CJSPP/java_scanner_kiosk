@@ -135,14 +135,15 @@ public class Order {
                 case 1:
 
                     int count = 0;
-                    /*변수타입이 Menu(부모클래스)이지만 호출은 Product(자식클래스)를
-                     호출하는 코드이다 -> 다형성?*/
-                    Menu menu = new Product(burger_name[num - 1], burger_price[num - 1], burger_comment[num - 1]);
-                    productList.add(new Product(menu.getName(), Product.getPrice(), menu.getComment()));
+
+                    //Product 객체(자식클래스)를 호출하고 값을 저장한 다음, 장바구니(productList)에 상품을 담는다.
+                    Product product = new Product(burger_name[num - 1], burger_price[num - 1], burger_comment[num - 1]);
+                    productList.add(new Product(product.getName(), product.getPrice(), product.getComment()));
 
                     System.out.println(burger_name[num - 1] + " 가 장바구니에 추가되었습니다.");
                     a();
                     break;
+
                 case 2:
                     System.out.println("취소되었습니다.");
                     burgerMenu();
@@ -249,10 +250,11 @@ public class Order {
                     a();
 
                 } else {
+
+                    //최근에 주문했던 것을 취소(= orderList 맨 마지막 인덱스 값 제거)
+                    orderList.remove(orderList.size() - 1);
+                    count--;
                     System.out.println("진행하던 주문이 취소되었습니다.");
-                    System.out.println();
-                    orderList.clear();
-                    count = 1;
                     a();
                 }
             case 2:
@@ -270,7 +272,7 @@ public class Order {
             total_price += orderList.get(i).getPrice();
         }
         System.out.println("[ 총 판매금액 현황 ] \n" +
-                "현재까지 총 판매된 금액은 [ W " + String.format(String.valueOf(total_price)) + " ]입니다 \n \n" +
+                "현재까지 총 판매된 금액은 [ W " + String.format("%.1f", total_price) + " ]입니다 \n \n" +
                 "[ 총 판매상품 목록 현황 ] \n" +
                 "현재까지 총 판매된 상품 목록은 아래와 같습니다.\n");
 
